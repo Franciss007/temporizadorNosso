@@ -1,0 +1,2 @@
+Adicione suas fotos em /public/images/
+Use nomes como foto1.jpg, foto2.jpg, etc.

@@ -1,0 +1,9 @@
+{
+  "name": "Nosso Tempo Juntos",
+  "short_name": "TempoJuntos",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fcd6e5",
+  "icons": []
+}
