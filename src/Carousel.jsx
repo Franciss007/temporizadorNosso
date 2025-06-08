@@ -14,7 +14,7 @@ const Carousel = () => {
 
   return (
     <div style={{ marginTop: 30 }}>
-      <img src={images[index]} alt="momentos" style={{ maxWidth: "90%", borderRadius: 12 }} />
+      <img src={images[index]} alt="momentos" style={{ maxWidth: "30%", borderRadius: 20 }} />
     </div>
   );
 };
