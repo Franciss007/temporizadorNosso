@@ -1,27 +1,43 @@
 import React, { useEffect, useState } from "react";
 
-const Timer = ({ startDate }) => {
+const Timer = () => {
   const [duration, setDuration] = useState("");
 
   useEffect(() => {
+    // Data fixa: 7 de junho de 2025 às 19h (hora local)
+    const start = new Date(2025, 5, 7, 19, 0, 0); // mês é zero-based, então 5 = junho
+
     const interval = setInterval(() => {
       const now = new Date();
-      const diff = now - new Date(startDate);
-      const seconds = Math.floor(diff / 1000);
+      let diff = now - start;
 
-      const y = Math.floor(seconds / (365.25 * 24 * 60 * 60));
-      const m = Math.floor((seconds % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
-      const d = Math.floor((seconds % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
-      const h = Math.floor((seconds % (24 * 60 * 60)) / 3600);
-      const min = Math.floor((seconds % 3600) / 60);
-      const s = seconds % 60;
+      if (diff < 0) {
+        setDuration("Ainda não começamos 💞");
+        return;
+      }
 
-      setDuration(`${y} anos, ${m} meses, ${d} dias, ${h}h ${min}min ${s}s`);
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      const years = Math.floor(daysTotal / 365);
+      const months = Math.floor((daysTotal % 365) / 30); // aproximação
+      const days = (daysTotal % 365) % 30;
+
+      setDuration(
+        `${years} anos, ${months} meses, ${days} dias, ${hours}h ${minutes}min ${seconds}s`
+      );
     }, 1000);
-    return () => clearInterval(interval);
-  }, [startDate]);
 
-  return <h2 style={{ marginTop: 30 }}>Estamos juntos há: {duration}</h2>;
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <h2 style={{ marginTop: 30 }}>
+      Estamos juntos há: {duration}
+    </h2>
+  );
 };
 
 export default Timer;
