@@ -34,9 +34,9 @@ const App = () => {
   return (
     <div style={{ fontFamily: "sans-serif", textAlign: "center", padding: 20 }}>
       <h1>Nosso Tempo Juntos 💖</h1>
+      <RomanticMessage />
       {!started ? (
         <>
-          <RomanticMessage />
           <button onClick={handleStart} style={{ marginTop: 20, padding: 10, fontSize: 18 }}>
             Começar nossa história
           </button>
