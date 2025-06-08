@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import RomanticMessage from "./RomanticMessage";
 import Timer from "./Timer";
 import Carousel from "./Carousel";
+import HeartRain from "./HeartRain";
 import { saveStartDate, getStartDate, getStartDateFromURL } from "./storage";
+
 
 
 const App = () => {
@@ -32,9 +34,13 @@ const App = () => {
   };
 
   return (
-    <div style={{ fontFamily: "sans-serif", textAlign: "center", padding: 20 }}>
+  <>
+    <HeartRain/>
+    <div style={{ fontFamily: "sans-serif", textAlign: "center", padding: 20, position: "relative", zIndex: 1 }}>
       <h1>Nosso Tempo Juntos 💖</h1>
+      <HeartRain/>
       <RomanticMessage />
+      
       {!started ? (
         <>
           <button onClick={handleStart} style={{ marginTop: 20, padding: 10, fontSize: 18 }}>
@@ -54,6 +60,7 @@ const App = () => {
         </>
       )}
     </div>
+  </>
   );
 };
 
