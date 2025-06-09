@@ -5,7 +5,12 @@ const messages = [
   "Cada segundo com você vale mais que mil vidas sem você.",
   "O tempo passa, mas o sentimento só cresce.",
   "Obrigado por dizer sim ao nosso amor.",
-  "Dia 07 começou o melhor capítulo da nossa vida"
+  "Dia 07 começou o melhor capítulo da nossa vida",
+  "Você é o sonho, que minha sempre falou para eu ir atrás",
+  "Se DaVinci suspeitasse que um dia você nasceria, ele nem tentaria fazer a monalisa, pois a obra mais linda já seria você ",
+  "As vezes me pego ti olhando, sem palavras, apenas apreciando tamanha paisagem",
+  "Eu quero ti amar, por todas as estações",
+  "Você é o maior motivo de muitos orgulhos meus, seu sucesso é a minha felicidade"
 ];
 
 const RomanticMessage = () => {
