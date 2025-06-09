@@ -5,7 +5,7 @@ const playlist = [
         id: 1,
         title: 'Logo Eu',
         artist: 'Jorge e Mateus',
-        preview: '/musicas/logo_eu.mp3',
+        preview: '/musicas/Logo_eu.mp3',
         cover: '/musicas/logo-eu.jpg',
     },
     {
