@@ -1,77 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function DeezerSearch() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  const [playingUrl, setPlayingUrl] = useState(null);
+const playlist = [
+  {
+    id: 1,
+    title: 'Song 1',
+    artist: 'Artist 1',
+    preview: 'https://cdns-preview-xyz/preview1.mp3',
+    cover: 'https://cdns-preview-xyz/cover1.jpg',
+  },
+  // ... mais músicas
+];
 
-  async function handleSearch(e) {
-    e.preventDefault();
-    if (!query.trim()) return;
+export default function FixedPlaylistPlayer() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    try {
-      const res = await fetch(`/api/deezer-search?q=${encodeURIComponent(query)}`);
-      const data = await res.json();
+  useEffect(() => {
+    // Começa tocando a primeira música assim que abrir
+  }, []);
 
-      if (data && data.data) {
-        setResults(data.data);
-        setPlayingUrl(null);
-      } else {
-        setResults([]);
-      }
-    } catch (err) {
-      console.error('Erro ao buscar:', err);
-      setResults([]);
-    }
+  function handleEnded() {
+    // Passa para a próxima música quando acabar a atual
+    setCurrentIndex((prev) => (prev + 1) % playlist.length);
   }
 
-  return (
-    <div style={{ maxWidth: 500, margin: '20px auto', textAlign: 'left' }}>
-      <form onSubmit={handleSearch} style={{ marginBottom: 20 }}>
-        <input
-          type="text"
-          placeholder="Digite o nome da música"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          style={{ width: '100%', padding: 10, fontSize: 16, boxSizing: 'border-box' }}
-        />
-        <button type="submit" style={{ marginTop: 10, padding: '10px 20px', fontSize: 16 }}>
-          Buscar música
-        </button>
-      </form>
+  const current = playlist[currentIndex];
 
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {results.map((item) => (
-          <li
-            key={item.id}
-            style={{
-              marginBottom: 15,
-              padding: 12,
-              border: '1px solid #ddd',
-              borderRadius: 6,
-              cursor: 'pointer',
-              backgroundColor: playingUrl === item.preview ? '#e0ffe0' : 'white',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-            }}
-            onClick={() => setPlayingUrl(item.preview)}
-          >
-            <div style={{ fontSize: 18, fontWeight: '700', color: '#222' }}>
-              {item.title}
-            </div>
-            <div style={{ fontSize: 14, color: '#666', marginTop: 4 }}>
-              {item.artist.name}
-            </div>
-            {playingUrl === item.preview && (
-              <audio
-                src={item.preview}
-                controls
-                autoPlay
-                style={{ marginTop: 10, width: '100%' }}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
+  return (
+    <div style={{ maxWidth: 400, margin: 'auto', textAlign: 'center' }}>
+      <img src={current.cover} alt={`Capa ${current.title}`} style={{ width: 200, borderRadius: 10 }} />
+      <h3>{current.title}</h3>
+      <p>{current.artist}</p>
+      <audio
+        src={current.preview}
+        controls
+        autoPlay
+        onEnded={handleEnded}
+        style={{ width: '100%' }}
+      />
     </div>
   );
 }

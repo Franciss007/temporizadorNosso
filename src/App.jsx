@@ -3,7 +3,7 @@ import RomanticMessage from "./RomanticMessage";
 import Timer from "./Timer";
 import Carousel from "./Carousel";
 import HeartRain from "./HeartRain";
-import DeezerSearch from "./DeezerSearch"; // Importa o DeezerSearch
+import FixedPlaylistPlayer from './FixedPlaylistPlayer';
 import { saveStartDate, getStartDate, getStartDateFromURL } from "./storage";
 
 const App = () => {
@@ -47,6 +47,7 @@ const App = () => {
         <h1>Nosso Tempo Juntos 💖</h1>
         <HeartRain />
         <RomanticMessage />
+        <FixedPlaylistPlayer />
 
         {!started ? (
           <button
@@ -65,7 +66,6 @@ const App = () => {
               </a>
             </p>
             <Carousel />
-            <DeezerSearch />
           </>
         )}
       </div>
