@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const images = ["/images/foto1.jpg", "/images/foto2.jpg", "/images/foto3.jpg"];
+const totalImages = 4;
+const images = Array.from({ length: totalImages }, (_, i) => `/images/foto${i + 1}.jpg`);
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
@@ -8,7 +9,7 @@ const Carousel = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((i) => (i + 1) % images.length);
-    }, 4000);
+    }, 3500);
     return () => clearInterval(timer);
   }, []);
 

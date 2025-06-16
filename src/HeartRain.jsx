@@ -14,10 +14,18 @@ const HeartRain = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      const id = Date.now();
       const left = Math.random() * 100;
       const delay = Math.random() * 1;
-      setHearts((prev) => [...prev, { id: Date.now(), left, delay }]);
-    }, 1000);
+
+      // Adiciona o novo coração
+      setHearts((prev) => [...prev, { id, left, delay }]);
+
+      // Remove o coração após 5 segundos
+      setTimeout(() => {
+        setHearts((prev) => prev.filter((heart) => heart.id !== id));
+      }, 5000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);

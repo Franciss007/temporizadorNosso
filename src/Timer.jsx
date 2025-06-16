@@ -5,8 +5,7 @@ const Timer = () => {
 
   useEffect(() => {
     // Data fixa: 7 de junho de 2025 às 19h (hora local)
-    const start = new Date(2025, 5, 7, 19, 0, 0); // mês é zero-based, então 5 = junho
-
+    const start = new Date(2025, 5, 7, 19, 0, 0); 
     const interval = setInterval(() => {
       const now = new Date();
       let diff = now - start;
